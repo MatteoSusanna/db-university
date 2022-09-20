@@ -48,4 +48,8 @@ relativo dipartimento, in ordine alfabetico per cognome e nome
     WHERE `departments`.`name` = "Dipartimento di Matematica"
 
 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
-superare ciascuno dei suoi esami 
+    superare ciascuno dei suoi esami
+    SELECT COUNT(*) AS "tentativi", `students`.`name`, `students`.`surname`
+    FROM `students`
+    JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id`
+    GROUP BY `students`.`name`, `students`.`surname`
