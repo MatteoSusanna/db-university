@@ -49,7 +49,9 @@ relativo dipartimento, in ordine alfabetico per cognome e nome
 
 7. BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
     superare ciascuno dei suoi esami
-    SELECT COUNT(*) AS "tentativi", `students`.`name`, `students`.`surname`
+    SELECT  COUNT(*) AS "tentativi", `students`.`name`, `students`.`surname`, `courses`.`name`
     FROM `students`
     JOIN `exam_student` ON `students`.`id` = `exam_student`.`student_id`
-    GROUP BY `students`.`name`, `students`.`surname`
+    JOIN `exams`ON `exam_student`.`exam_id` = `exams`.`id`
+    JOIN `courses` ON `exams`.`course_id` = `courses`.`id`
+    GROUP BY `students`.`name`, `students`.`surname`, `courses`.`name`
